@@ -103,7 +103,7 @@ class DBN(nn.Module):
             RBMLayer(n_visible if i == 0 else hidden_sizes[i - 1], hidden_sizes[i])
             for i in range(len(hidden_sizes))
         ])
-        self.token_dim = 16  # bisa diubah sesuai preferensi
+        self.token_dim = 16  
         self.attn_embed = nn.Linear(1, self.token_dim)
         encoder_layer = TransformerEncoderLayer(
         d_model=self.token_dim,
@@ -286,7 +286,7 @@ class DBN(nn.Module):
                 optimizer.step()
 
                 total_loss += loss.item() * xb.size(0)
-                preds = (torch.sigmoid(out) > 0.48).float()
+                preds = (torch.sigmoid(out) > 0.4).float()
                 total_correct += (preds == yb).sum().item()
                 total_samples += xb.size(0)
 
@@ -302,7 +302,7 @@ class DBN(nn.Module):
                 with torch.no_grad():
                     out_v = self.forward(X_val)
                     loss_v = self.criterion(out_v, y_val.unsqueeze(1).float()).item()
-                    preds_v = (torch.sigmoid(out_v) > 0.48).float()
+                    preds_v = (torch.sigmoid(out_v) > 0.4).float()
                     acc_v = (preds_v == y_val.unsqueeze(1).float()).float().mean().item()
 
                 self.val_losses.append(loss_v)

@@ -15,7 +15,7 @@ def name_to_smiles(name):
                 print(f"Ditemukan melalui OPSIN: {opsin_data['smiles']}")
                 return opsin_data["smiles"]
     except requests.exceptions.RequestException:
-        pass  # Jika OPSIN gagal, lanjut ke PubChem
+        pass 
     
     # Jika OPSIN gagal, coba gunakan PubChem API
     pubchem_url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{name}/property/IsomericSMILES/JSON"
@@ -32,7 +32,6 @@ def name_to_smiles(name):
     except (KeyError, IndexError):
         print(f"Format tidak ditemukan di PubChem untuk {name}")
         return None
-
 
 df_genotoxic = pd.read_excel("cleaned_genotoxic_data.xlsx")
 df_genotoxic["SMILES"] = df_genotoxic["Substance"].apply(name_to_smiles)
