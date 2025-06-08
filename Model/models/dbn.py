@@ -6,15 +6,6 @@ from torch.nn import TransformerEncoder, TransformerEncoderLayer
 
 
 class FocalLoss(nn.Module):
-    """
-    Focal Loss untuk binary classification. 
-    Membantu memfokuskan training pada contoh "sulit", 
-    yang sangat berguna pada data imbalanced.
-    Args:
-        alpha: float, bobot skalar untuk kelas positif (→ lebih tinggi untuk kelas minoritas).
-        gamma: float, faktor down-weighting untuk contoh mudah (biasanya 1-3).
-        pos_weight: tensor(float)[1], sama seperti pos_weight di BCEWithLogitsLoss (cost-sensitive).
-    """
     def __init__(self, alpha=1.0, gamma=2.0, pos_weight=None):
         super(FocalLoss, self).__init__()
         self.alpha = alpha
@@ -22,13 +13,11 @@ class FocalLoss(nn.Module):
         self.pos_weight = pos_weight
 
     def forward(self, logits, targets):
-        # logits: [batch_size, 1]; targets: [batch_size, 1]
-        pb = torch.sigmoid(logits)               # Probabilitas positif
-        # Cross-entropy:
+
+        pb = torch.sigmoid(logits)              
         ce_loss = F.binary_cross_entropy_with_logits(
             logits, targets, pos_weight=self.pos_weight, reduction="none"
         )
-        # p_t = prob pred bener: p_t = pb jika target=1, else (1-pb)
         p_t = pb * targets + (1 - pb) * (1 - targets)
         focal_factor = (1 - p_t) ** self.gamma
         loss = self.alpha * focal_factor * ce_loss
@@ -82,23 +71,13 @@ class RBMLayer(nn.Module):
             self.W.add_(self.W_mom)
             self.v_bias.add_(self.vb_mom)
             self.h_bias.add_(self.hb_mom)
-
-        # MSE rekonstruksi sebagai monitoring
         return ((v0 - vk) ** 2).mean().item()
 
 
 class DBN(nn.Module):
-    """
-    DBN dengan:
-    - Pretraining RBM berlapis
-    - Light attention block sebelum classifier
-    - Deep classifier (512→256→128→64) dengan dropout
-    - Pilihan loss: BCEWithLogitsLoss(pos_weight) atau FocalLoss
-    """
     def __init__(self, n_visible, hidden_sizes=[512, 256, 128], 
                  use_focal=False, focal_alpha=1.0, focal_gamma=2.0):
         super(DBN, self).__init__()
-        # 1) RBM-layers (pretraining)
         self.rbms = nn.ModuleList([
             RBMLayer(n_visible if i == 0 else hidden_sizes[i - 1], hidden_sizes[i])
             for i in range(len(hidden_sizes))
@@ -115,17 +94,8 @@ class DBN(nn.Module):
     )
         self.transformer = TransformerEncoder(encoder_layer, num_layers=1)
 
-
-        # 2) (Optional) Attention block di atas representasi RBM:
-        #    - Kita anggap output RBM terakhir sebagai "urutan" length = hidden_sizes[-1],
-        #      sehingga kita bisa apply 1-head self-attention ringan.
-        #    - Meskipun fitur RBM sudah berbentuk vektor, kita reshape dulu agar compatible.
-        # self.attn_embed = nn.Linear(1, 16)   # embed tiap elemen vektor tersembunyi ke dim=16
-        # self.attn = nn.MultiheadAttention(embed_dim=16, num_heads=2)
-
-        # 3) Deep MLP classifier
         self.classifier = nn.Sequential(
-            nn.Linear(hidden_sizes[-1] * 16, 512),  # multiply embed_dim=16
+            nn.Linear(hidden_sizes[-1] * 16, 512), 
             nn.BatchNorm1d(512),
             nn.LeakyReLU(0.1),
             nn.Dropout(0.5),
@@ -148,55 +118,35 @@ class DBN(nn.Module):
             nn.Linear(64, 1)
         )
 
-        # 4) Pilihan loss
+
         self.use_focal = use_focal
         if self.use_focal:
             self.focal_alpha = focal_alpha
             self.focal_gamma = focal_gamma
-            # pos_weight akan di-set nanti saat training
+     
             self.criterion = None
         else:
-            self.criterion = None  # akan diinisialisasi di train_model
+            self.criterion = None 
 
     def forward(self, x):
-        # 1) Jalankan pre-trained RBM: sampling h_tiap layer
+
         for rbm in self.rbms:
             _, x = rbm.sample_h(x)
 
-        # 2) Mini Transformer Encoder block
+
         batch_size = x.size(0)
-        hid_dim = x.size(1)  # = hidden_sizes[-1]
-        x_unsq = x.unsqueeze(2)  # [B, hidden_dim, 1]
-        x_emb = self.attn_embed(x_unsq)  # [B, hidden_dim, token_dim]
+        hid_dim = x.size(1) 
+        x_unsq = x.unsqueeze(2)  
+        x_emb = self.attn_embed(x_unsq) 
 
-        # Apply Transformer (batch_first=True → input shape [B, T, D])
-        x_transformed = self.transformer(x_emb)  # [B, hidden_dim, token_dim]
-        x_flat = x_transformed.contiguous().view(batch_size, -1)  # [B, hidden_dim * token_dim]
+  
+        x_transformed = self.transformer(x_emb)  
+        x_flat = x_transformed.contiguous().view(batch_size, -1) 
 
-        # # x sekarang: [batch_size, hidden_sizes[-1]]
-        # # 2) Attention block
-        # #    - Bentuk ulang x: [batch_size, hidden_dim, 1]
-        # batch_size = x.size(0)
-        # hid_dim = x.size(1)  # = hidden_sizes[-1]
-        # x_unsq = x.unsqueeze(2)  # [B, hid_dim, 1]
-
-        # # embed tiap elemen: [B, hid_dim, 16]
-        # x_emb = self.attn_embed(x_unsq)  # Linear(1→16) ambil tiap "token"
-        # # reshape: [hid_dim, B, 16] untuk feed ke MultiheadAttention
-        # attn_in = x_emb.permute(1, 0, 2)
-        # # self-attention: out shape [hid_dim, B, 16]
-        # attn_out, _ = self.attn(attn_in, attn_in, attn_in)
-        # # kembali ke [B, hid_dim, 16]
-        # attn_out = attn_out.permute(1, 0, 2)
-        # # flatten: [B, hid_dim * 16]
-        # attn_flat = attn_out.contiguous().view(batch_size, -1)
-
-        # 3) Kirim ke classifier
         out = self.classifier(x_flat)
         return out
 
     def extract_features(self, x):
-        # Sama seperti forward, tapi tanpa sampling di classifier
         for rbm in self.rbms:
             x = rbm.sample_hidden(x)
         return x
@@ -210,20 +160,7 @@ class DBN(nn.Module):
                     weight_decay=1e-4,
                     clip_grad=1.0,
                     patience=20):
-        """
-        Fine-tuning supervised DBN + attention + deep MLP.
-
-        Args:
-            X_train (Tensor): [N_train, n_visible]
-            y_train (Tensor): [N_train] atau [N_train,1]
-            val_data (tuple): (X_val, y_val) sebagai Tensor
-            epochs (int)
-            batch_size (int)
-            lr (float)
-            weight_decay (float)
-            clip_grad (float)
-            patience (int): epoch tanpa perbaikan val_loss sebelum early stop
-        """
+    
         device = X_train.device
 
         # Pre-training RBM
@@ -277,7 +214,7 @@ class DBN(nn.Module):
                 xb = X_train[idxs]
                 yb = y_train[idxs].unsqueeze(1).float()
 
-                out = self.forward(xb)  # logit → [B,1]
+                out = self.forward(xb)  
                 loss = self.criterion(out, yb)
 
                 optimizer.zero_grad()

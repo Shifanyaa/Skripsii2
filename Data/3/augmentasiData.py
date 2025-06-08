@@ -5,7 +5,6 @@ from rdkit.Chem import AllChem, Descriptors
 from scipy.stats.mstats import winsorize
 from sklearn.preprocessing import Binarizer, StandardScaler
 from sklearn.model_selection import train_test_split
-# Ganti ADASYN & SMOTEENN dengan SMOTE “stabil”
 from imblearn.over_sampling import SMOTE
 from rdkit import DataStructs
 

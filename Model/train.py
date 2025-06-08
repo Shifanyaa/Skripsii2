@@ -8,13 +8,14 @@ import matplotlib.pyplot as plt
 import joblib
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import matthews_corrcoef, roc_auc_score
+from sklearn.metrics import (
+    matthews_corrcoef, roc_auc_score, roc_curve,
+    precision_recall_curve, confusion_matrix, mean_squared_error
+)
 from models.dbn import DBN
 from models.cnn import CNNModel
 from models.random_forest import train_rf, evaluate_rf
-from sklearn.metrics import roc_curve, precision_recall_curve, confusion_matrix, mean_squared_error
-import seaborn as sns
-# from sklearn.manifold import TSNE
+
 
 def setup_logging():
     logging.basicConfig(
@@ -23,11 +24,13 @@ def setup_logging():
         handlers=[logging.FileHandler("training.log"), logging.StreamHandler()]
     )
 
+
 def load_data(p):
     df = pd.read_csv(p).dropna(subset=['Label'])
     y = np.where(df['Label'] > 0, 1, 0)
     X = df.drop(columns=['Label'])
     return X.values, y
+
 
 def evaluate_torch(model, X, y):
     with torch.no_grad():
@@ -36,6 +39,7 @@ def evaluate_torch(model, X, y):
         mcc = matthews_corrcoef(y, predb)
         auc = roc_auc_score(y, preds.cpu().numpy())
     return mcc, auc
+
 
 def plot_metrics(model):
     window = 3
@@ -60,6 +64,7 @@ def plot_metrics(model):
     plt.tight_layout()
     plt.savefig("training_plot.png")
     plt.show()
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -93,7 +98,6 @@ def main():
         joblib.dump(scaler, "scaler.pkl")
         logging.info("Model dan scaler tersimpan (dbn_final.pth, scaler.pkl)")
 
-        # Evaluasi akhir
         mcc_val, auc_val = evaluate_torch(model, X_v, y_val)
         mcc_test, auc_test = evaluate_torch(model, X_ts, y_test)
 
@@ -109,7 +113,6 @@ def main():
         plt.savefig("dbn_roc.png")
         plt.show()
 
-        # Confusion Matrix
         preds_bin = (preds > 0.5).astype(int)
         cm = confusion_matrix(y_val, preds_bin)
         plt.figure(figsize=(6, 5))
@@ -120,7 +123,6 @@ def main():
         plt.savefig("dbn_confusion_matrix.png")
         plt.show()
 
-        # Precision-Recall Curve
         precision, recall, _ = precision_recall_curve(y_val, preds)
         plt.figure()
         plt.plot(recall, precision)
@@ -130,23 +132,8 @@ def main():
         plt.savefig("dbn_precision_recall.png")
         plt.show()
 
-        # MSE
         mse_val = mean_squared_error(y_val, preds)
         logging.info(f"Validation MSE: {mse_val:.6f}")
-
-        # # t-SNE on last hidden layer
-        # with torch.no_grad():
-        #     hidden_out = model.extract_features(torch.tensor(X_v, dtype=torch.float32)).cpu().numpy()
-        # tsne = TSNE(n_components=1, random_state=42, perplexity=30)
-        # tsne_result = tsne.fit_transform(hidden_out)
-
-        # plt.figure(figsize=(8, 6))
-        # scatter = plt.scatter(tsne_result[:, 0], tsne_result[:, 1], c=y_val, cmap='coolwarm', alpha=0.7)
-        # plt.colorbar(scatter, label='Label')
-        # plt.title('t-SNE Visualization (Last Hidden Layer - Validation Set)')
-        # plt.savefig("dbn_tsne.png")
-        # plt.show()
-
 
     elif args.model == "cnn":
         logging.info("Training CNN...")
@@ -168,14 +155,8 @@ def main():
         joblib.dump(scaler, "scalercnn.pkl")
         logging.info("Model dan scaler tersimpan (cnn_final.pth, scalercnn.pkl)")
 
-        # Evaluasi akhir
         mcc_val, auc_val = evaluate_torch(model, X_v, y_val)
         mcc_test, auc_test = evaluate_torch(model, X_ts, y_test)
-
-        # ROC Curve
-        from sklearn.metrics import roc_curve, precision_recall_curve, confusion_matrix, mean_squared_error
-        import seaborn as sns
-        from sklearn.manifold import TSNE
 
         preds = model(torch.tensor(X_v, dtype=torch.float32)).squeeze().detach().cpu().numpy()
         fpr, tpr, _ = roc_curve(y_val, preds)
@@ -189,7 +170,6 @@ def main():
         plt.savefig("cnn_roc.png")
         plt.show()
 
-        # Confusion Matrix
         preds_bin = (preds > 0.5).astype(int)
         cm = confusion_matrix(y_val, preds_bin)
         plt.figure(figsize=(6, 5))
@@ -200,7 +180,6 @@ def main():
         plt.savefig("cnn_confusion_matrix.png")
         plt.show()
 
-        # Precision-Recall Curve
         precision, recall, _ = precision_recall_curve(y_val, preds)
         plt.figure()
         plt.plot(recall, precision)
@@ -210,11 +189,10 @@ def main():
         plt.savefig("cnn_precision_recall.png")
         plt.show()
 
-        # MSE
         mse_val = mean_squared_error(y_val, preds)
         logging.info(f"Validation MSE: {mse_val:.6f}")
 
-    else:  # args.model == "rf"
+    elif args.model == "rf":
         logging.info("Training Random Forest...")
         scaler = StandardScaler().fit(X_train)
         X_tr = scaler.transform(X_train)
@@ -227,11 +205,10 @@ def main():
         joblib.dump(scaler, "scalerrf.pkl")
         logging.info("Model dan scaler tersimpan (rf_final.pkl, scalerrf.pkl)")
 
-        # Evaluasi akhir
-        mcc_val, auc_val = evaluate_torch(model, X_v, y_val)
-        mcc_test, auc_test = evaluate_torch(model, X_ts, y_test)
+        mcc_val, auc_val = evaluate_rf(model, X_v, y_val)
+        mcc_test, auc_test = evaluate_rf(model, X_ts, y_test)
 
-        preds = model(torch.tensor(X_v, dtype=torch.float32)).squeeze().detach().cpu().numpy()
+        preds = model.predict_proba(X_v)[:, 1]
         fpr, tpr, _ = roc_curve(y_val, preds)
         plt.figure()
         plt.plot(fpr, tpr, label=f'AUC = {auc_val:.4f}')
@@ -243,7 +220,6 @@ def main():
         plt.savefig("rf_roc.png")
         plt.show()
 
-        # Confusion Matrix
         preds_bin = (preds > 0.5).astype(int)
         cm = confusion_matrix(y_val, preds_bin)
         plt.figure(figsize=(6, 5))
@@ -254,7 +230,6 @@ def main():
         plt.savefig("rf_confusion_matrix.png")
         plt.show()
 
-        # Precision-Recall Curve
         precision, recall, _ = precision_recall_curve(y_val, preds)
         plt.figure()
         plt.plot(recall, precision)
@@ -264,7 +239,6 @@ def main():
         plt.savefig("rf_precision_recall.png")
         plt.show()
 
-        # MSE
         mse_val = mean_squared_error(y_val, preds)
         logging.info(f"Validation MSE: {mse_val:.6f}")
 
@@ -272,6 +246,7 @@ def main():
     logging.info(f"Total training time: {total_end - total_start:.2f}s")
     logging.info(f"Validation MCC: {mcc_val:.4f}, AUC: {auc_val:.4f}")
     logging.info(f"Test       MCC: {mcc_test:.4f}, AUC: {auc_test:.4f}")
+
 
 if __name__ == "__main__":
     main()

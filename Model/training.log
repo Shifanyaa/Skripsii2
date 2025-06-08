@@ -2860,3 +2860,278 @@
 2025-06-03 12:01:09,325 - INFO - Training Random Forest...
 2025-06-03 12:01:09,356 - INFO - Training Random Forest...
 2025-06-03 12:01:10,303 - INFO - Model dan scaler tersimpan (rf_final.pkl, scalerrf.pkl)
+2025-06-04 00:13:42,393 - INFO - Training DBN...
+2025-06-04 00:13:43,100 - INFO - === Starting DBN pre-training (layer-wise RBM) ===
+2025-06-04 00:13:43,100 - INFO - --> Pre-training RBM layer 1/3
+2025-06-04 00:13:43,687 - INFO -   - RBM1 Epoch   0: ReconLoss=1.478823
+2025-06-04 00:13:44,688 - INFO -   - RBM1 Epoch  10: ReconLoss=1.064931
+2025-06-04 00:13:45,779 - INFO -   - RBM1 Epoch  20: ReconLoss=1.023459
+2025-06-04 00:13:46,977 - INFO -   - RBM1 Epoch  30: ReconLoss=1.019033
+2025-06-04 00:13:48,002 - INFO -   - RBM1 Epoch  40: ReconLoss=1.012100
+2025-06-04 00:13:49,223 - INFO -   - RBM1 Epoch  50: ReconLoss=1.027540
+2025-06-04 00:13:50,394 - INFO -   - RBM1 Epoch  60: ReconLoss=1.028445
+2025-06-04 00:13:52,093 - INFO -   - RBM1 Epoch  70: ReconLoss=1.034796
+2025-06-04 00:13:54,898 - INFO -   - RBM1 Epoch  80: ReconLoss=1.048766
+2025-06-04 00:13:56,902 - INFO -   - RBM1 Epoch  90: ReconLoss=1.033866
+2025-06-04 00:13:58,553 - INFO - --> Pre-training RBM layer 2/3
+2025-06-04 00:13:58,670 - INFO -   - RBM2 Epoch   0: ReconLoss=0.437627
+2025-06-04 00:13:59,649 - INFO -   - RBM2 Epoch  10: ReconLoss=0.413718
+2025-06-04 00:14:00,789 - INFO -   - RBM2 Epoch  20: ReconLoss=0.403059
+2025-06-04 00:14:02,350 - INFO -   - RBM2 Epoch  30: ReconLoss=0.394920
+2025-06-04 00:14:03,945 - INFO -   - RBM2 Epoch  40: ReconLoss=0.391651
+2025-06-04 00:14:05,709 - INFO -   - RBM2 Epoch  50: ReconLoss=0.388969
+2025-06-04 00:14:06,880 - INFO -   - RBM2 Epoch  60: ReconLoss=0.385401
+2025-06-04 00:14:08,900 - INFO -   - RBM2 Epoch  70: ReconLoss=0.382951
+2025-06-04 00:14:10,564 - INFO -   - RBM2 Epoch  80: ReconLoss=0.379979
+2025-06-04 00:14:11,752 - INFO -   - RBM2 Epoch  90: ReconLoss=0.378622
+2025-06-04 00:14:12,764 - INFO - --> Pre-training RBM layer 3/3
+2025-06-04 00:14:12,834 - INFO -   - RBM3 Epoch   0: ReconLoss=0.402834
+2025-06-04 00:14:13,365 - INFO -   - RBM3 Epoch  10: ReconLoss=0.225096
+2025-06-04 00:14:13,945 - INFO -   - RBM3 Epoch  20: ReconLoss=0.175047
+2025-06-04 00:14:14,680 - INFO -   - RBM3 Epoch  30: ReconLoss=0.165727
+2025-06-04 00:14:15,256 - INFO -   - RBM3 Epoch  40: ReconLoss=0.161085
+2025-06-04 00:14:15,717 - INFO -   - RBM3 Epoch  50: ReconLoss=0.158279
+2025-06-04 00:14:16,316 - INFO -   - RBM3 Epoch  60: ReconLoss=0.154368
+2025-06-04 00:14:17,121 - INFO -   - RBM3 Epoch  70: ReconLoss=0.152703
+2025-06-04 00:14:18,143 - INFO -   - RBM3 Epoch  80: ReconLoss=0.151235
+2025-06-04 00:14:19,003 - INFO -   - RBM3 Epoch  90: ReconLoss=0.150121
+2025-06-04 00:14:19,671 - INFO - === Starting DBN fine-tuning (supervised) ===
+2025-06-04 00:14:56,362 - INFO - Epoch 000 | Train Loss=0.6919, Acc=0.5368 | Val Loss=0.6471, Acc=0.0728 | LR=0.000100
+2025-06-04 00:15:01,997 - INFO - Epoch 001 | Train Loss=0.6665, Acc=0.5816 | Val Loss=0.6161, Acc=0.2042 | LR=0.000100
+2025-06-04 00:15:06,728 - INFO - Epoch 002 | Train Loss=0.6383, Acc=0.6319 | Val Loss=0.5687, Acc=0.4061 | LR=0.000100
+2025-06-04 00:15:11,354 - INFO - Epoch 003 | Train Loss=0.6130, Acc=0.6424 | Val Loss=0.4880, Acc=0.5798 | LR=0.000100
+2025-06-04 00:15:15,499 - INFO - Epoch 004 | Train Loss=0.5869, Acc=0.6775 | Val Loss=0.4230, Acc=0.6737 | LR=0.000100
+2025-06-04 00:15:19,578 - INFO - Epoch 005 | Train Loss=0.5530, Acc=0.7168 | Val Loss=0.4007, Acc=0.6995 | LR=0.000100
+2025-06-04 00:15:24,050 - INFO - Epoch 006 | Train Loss=0.5307, Acc=0.7329 | Val Loss=0.3768, Acc=0.7230 | LR=0.000100
+2025-06-04 00:15:28,134 - INFO - Epoch 007 | Train Loss=0.5025, Acc=0.7523 | Val Loss=0.3465, Acc=0.7793 | LR=0.000100
+2025-06-04 00:15:32,429 - INFO - Epoch 008 | Train Loss=0.4742, Acc=0.7790 | Val Loss=0.3497, Acc=0.7723 | LR=0.000100
+2025-06-04 00:15:37,114 - INFO - Epoch 009 | Train Loss=0.4523, Acc=0.7967 | Val Loss=0.3503, Acc=0.7653 | LR=0.000100
+2025-06-04 00:15:41,794 - INFO - Epoch 010 | Train Loss=0.4238, Acc=0.8123 | Val Loss=0.3455, Acc=0.7700 | LR=0.000100
+2025-06-04 00:15:46,217 - INFO - Epoch 011 | Train Loss=0.3971, Acc=0.8373 | Val Loss=0.3160, Acc=0.8075 | LR=0.000100
+2025-06-04 00:15:50,835 - INFO - Epoch 012 | Train Loss=0.3755, Acc=0.8567 | Val Loss=0.3013, Acc=0.8216 | LR=0.000100
+2025-06-04 00:15:55,540 - INFO - Epoch 013 | Train Loss=0.3518, Acc=0.8711 | Val Loss=0.2605, Acc=0.8873 | LR=0.000100
+2025-06-04 00:15:59,883 - INFO - Epoch 014 | Train Loss=0.3246, Acc=0.8855 | Val Loss=0.2683, Acc=0.8779 | LR=0.000100
+2025-06-04 00:16:05,099 - INFO - Epoch 015 | Train Loss=0.2986, Acc=0.8952 | Val Loss=0.2403, Acc=0.8944 | LR=0.000100
+2025-06-04 00:16:10,387 - INFO - Epoch 016 | Train Loss=0.2797, Acc=0.9066 | Val Loss=0.2162, Acc=0.9225 | LR=0.000100
+2025-06-04 00:16:15,659 - INFO - Epoch 017 | Train Loss=0.2666, Acc=0.9163 | Val Loss=0.2142, Acc=0.9131 | LR=0.000100
+2025-06-04 00:16:20,950 - INFO - Epoch 018 | Train Loss=0.2464, Acc=0.9265 | Val Loss=0.2685, Acc=0.8756 | LR=0.000100
+2025-06-04 00:16:25,925 - INFO - Epoch 019 | Train Loss=0.2341, Acc=0.9336 | Val Loss=0.2439, Acc=0.8897 | LR=0.000100
+2025-06-04 00:16:30,733 - INFO - Epoch 020 | Train Loss=0.2152, Acc=0.9421 | Val Loss=0.2564, Acc=0.8897 | LR=0.000100
+2025-06-04 00:16:36,848 - INFO - Epoch 021 | Train Loss=0.2054, Acc=0.9438 | Val Loss=0.2038, Acc=0.9272 | LR=0.000100
+2025-06-04 00:16:41,950 - INFO - Epoch 022 | Train Loss=0.1929, Acc=0.9527 | Val Loss=0.2234, Acc=0.9131 | LR=0.000100
+2025-06-04 00:16:46,198 - INFO - Epoch 023 | Train Loss=0.1811, Acc=0.9548 | Val Loss=0.1916, Acc=0.9343 | LR=0.000100
+2025-06-04 00:16:50,463 - INFO - Epoch 024 | Train Loss=0.1726, Acc=0.9594 | Val Loss=0.1916, Acc=0.9296 | LR=0.000100
+2025-06-04 00:16:54,979 - INFO - Epoch 025 | Train Loss=0.1609, Acc=0.9637 | Val Loss=0.2279, Acc=0.9061 | LR=0.000100
+2025-06-04 00:17:00,117 - INFO - Epoch 026 | Train Loss=0.1551, Acc=0.9641 | Val Loss=0.2078, Acc=0.9178 | LR=0.000100
+2025-06-04 00:17:08,141 - INFO - Epoch 027 | Train Loss=0.1486, Acc=0.9683 | Val Loss=0.2042, Acc=0.9225 | LR=0.000050
+2025-06-04 00:17:14,937 - INFO - Epoch 028 | Train Loss=0.1414, Acc=0.9696 | Val Loss=0.2242, Acc=0.9108 | LR=0.000050
+2025-06-04 00:17:20,884 - INFO - Epoch 029 | Train Loss=0.1345, Acc=0.9725 | Val Loss=0.2244, Acc=0.9108 | LR=0.000050
+2025-06-04 00:17:27,033 - INFO - Epoch 030 | Train Loss=0.1317, Acc=0.9734 | Val Loss=0.2369, Acc=0.9061 | LR=0.000050
+2025-06-04 00:17:35,810 - INFO - Epoch 031 | Train Loss=0.1326, Acc=0.9742 | Val Loss=0.1918, Acc=0.9319 | LR=0.000025
+2025-06-04 00:17:42,785 - INFO - Epoch 032 | Train Loss=0.1289, Acc=0.9742 | Val Loss=0.2310, Acc=0.9061 | LR=0.000025
+2025-06-04 00:17:48,706 - INFO - Epoch 033 | Train Loss=0.1258, Acc=0.9759 | Val Loss=0.2206, Acc=0.9178 | LR=0.000025
+2025-06-04 00:17:54,641 - INFO - Epoch 034 | Train Loss=0.1280, Acc=0.9755 | Val Loss=0.2212, Acc=0.9202 | LR=0.000025
+2025-06-04 00:18:00,111 - INFO - Epoch 035 | Train Loss=0.1200, Acc=0.9780 | Val Loss=0.2176, Acc=0.9202 | LR=0.000013
+2025-06-04 00:18:05,783 - INFO - Epoch 036 | Train Loss=0.1201, Acc=0.9772 | Val Loss=0.2233, Acc=0.9178 | LR=0.000013
+2025-06-04 00:18:13,509 - INFO - Epoch 037 | Train Loss=0.1222, Acc=0.9776 | Val Loss=0.2161, Acc=0.9202 | LR=0.000013
+2025-06-04 00:18:21,294 - INFO - Epoch 038 | Train Loss=0.1179, Acc=0.9784 | Val Loss=0.2129, Acc=0.9225 | LR=0.000013
+2025-06-04 00:18:28,809 - INFO - Epoch 039 | Train Loss=0.1170, Acc=0.9772 | Val Loss=0.2195, Acc=0.9178 | LR=0.000006
+2025-06-04 00:18:33,132 - INFO - Epoch 040 | Train Loss=0.1175, Acc=0.9784 | Val Loss=0.2170, Acc=0.9178 | LR=0.000006
+2025-06-04 00:18:37,567 - INFO - Epoch 041 | Train Loss=0.1200, Acc=0.9759 | Val Loss=0.2290, Acc=0.9131 | LR=0.000006
+2025-06-04 00:18:42,747 - INFO - Epoch 042 | Train Loss=0.1178, Acc=0.9776 | Val Loss=0.2173, Acc=0.9178 | LR=0.000006
+2025-06-04 00:18:47,967 - INFO - Epoch 043 | Train Loss=0.1167, Acc=0.9772 | Val Loss=0.2167, Acc=0.9178 | LR=0.000003
+2025-06-04 00:18:47,968 - INFO - Early stopping triggered at epoch 43
+2025-06-04 00:18:47,968 - INFO - === Fine-tuning selesai ===
+2025-06-04 00:19:00,011 - INFO - Model dan scaler tersimpan (dbn_final.pth, scaler.pkl)
+2025-06-04 02:21:52,378 - INFO - Training DBN...
+2025-06-04 02:21:53,212 - INFO - === Starting DBN pre-training (layer-wise RBM) ===
+2025-06-04 02:21:53,213 - INFO - --> Pre-training RBM layer 1/3
+2025-06-04 02:21:53,950 - INFO -   - RBM1 Epoch   0: ReconLoss=1.470848
+2025-06-04 02:21:56,351 - INFO -   - RBM1 Epoch  10: ReconLoss=1.042478
+2025-06-04 02:22:00,741 - INFO -   - RBM1 Epoch  20: ReconLoss=1.017117
+2025-06-04 02:22:03,854 - INFO -   - RBM1 Epoch  30: ReconLoss=1.020322
+2025-06-04 02:22:05,917 - INFO -   - RBM1 Epoch  40: ReconLoss=1.018982
+2025-06-04 02:22:08,683 - INFO -   - RBM1 Epoch  50: ReconLoss=1.032591
+2025-06-04 02:22:10,711 - INFO -   - RBM1 Epoch  60: ReconLoss=1.031296
+2025-06-04 02:22:13,318 - INFO -   - RBM1 Epoch  70: ReconLoss=1.045755
+2025-06-04 02:22:16,676 - INFO -   - RBM1 Epoch  80: ReconLoss=1.049939
+2025-06-04 02:22:20,901 - INFO -   - RBM1 Epoch  90: ReconLoss=1.043212
+2025-06-04 02:22:26,517 - INFO - --> Pre-training RBM layer 2/3
+2025-06-04 02:22:27,188 - INFO -   - RBM2 Epoch   0: ReconLoss=0.438234
+2025-06-04 02:22:32,078 - INFO -   - RBM2 Epoch  10: ReconLoss=0.413179
+2025-06-04 02:22:33,815 - INFO -   - RBM2 Epoch  20: ReconLoss=0.402381
+2025-06-04 02:22:36,225 - INFO -   - RBM2 Epoch  30: ReconLoss=0.394172
+2025-06-04 02:22:38,956 - INFO -   - RBM2 Epoch  40: ReconLoss=0.389510
+2025-06-04 02:22:41,582 - INFO -   - RBM2 Epoch  50: ReconLoss=0.387232
+2025-06-04 02:22:43,335 - INFO -   - RBM2 Epoch  60: ReconLoss=0.385209
+2025-06-04 02:22:45,720 - INFO -   - RBM2 Epoch  70: ReconLoss=0.381647
+2025-06-04 02:22:49,186 - INFO -   - RBM2 Epoch  80: ReconLoss=0.378388
+2025-06-04 02:22:53,401 - INFO -   - RBM2 Epoch  90: ReconLoss=0.377295
+2025-06-04 02:23:18,884 - INFO - --> Pre-training RBM layer 3/3
+2025-06-04 02:23:19,931 - INFO -   - RBM3 Epoch   0: ReconLoss=0.399901
+2025-06-04 02:23:24,412 - INFO -   - RBM3 Epoch  10: ReconLoss=0.218749
+2025-06-04 02:23:28,351 - INFO -   - RBM3 Epoch  20: ReconLoss=0.172271
+2025-06-04 02:23:31,212 - INFO -   - RBM3 Epoch  30: ReconLoss=0.162447
+2025-06-04 02:23:33,245 - INFO -   - RBM3 Epoch  40: ReconLoss=0.157063
+2025-06-04 02:23:34,482 - INFO -   - RBM3 Epoch  50: ReconLoss=0.153582
+2025-06-04 02:23:35,888 - INFO -   - RBM3 Epoch  60: ReconLoss=0.153333
+2025-06-04 02:23:37,865 - INFO -   - RBM3 Epoch  70: ReconLoss=0.152448
+2025-06-04 02:23:40,451 - INFO -   - RBM3 Epoch  80: ReconLoss=0.150275
+2025-06-04 02:23:42,091 - INFO -   - RBM3 Epoch  90: ReconLoss=0.148480
+2025-06-04 02:23:44,295 - INFO - === Starting DBN fine-tuning (supervised) ===
+2025-06-04 02:24:39,637 - INFO - Epoch 000 | Train Loss=0.7209, Acc=0.5199 | Val Loss=0.7501, Acc=0.0728 | LR=0.000100
+2025-06-04 02:24:46,821 - INFO - Epoch 001 | Train Loss=0.6834, Acc=0.5495 | Val Loss=0.7287, Acc=0.0728 | LR=0.000100
+2025-06-04 02:24:55,739 - INFO - Epoch 002 | Train Loss=0.6606, Acc=0.5592 | Val Loss=0.6791, Acc=0.1784 | LR=0.000100
+2025-06-04 02:25:22,161 - INFO - Epoch 003 | Train Loss=0.6308, Acc=0.5858 | Val Loss=0.5931, Acc=0.3850 | LR=0.000100
+2025-06-04 02:25:41,292 - INFO - Epoch 004 | Train Loss=0.5912, Acc=0.6382 | Val Loss=0.5178, Acc=0.5094 | LR=0.000100
+2025-06-04 02:26:02,443 - INFO - Epoch 005 | Train Loss=0.5629, Acc=0.6762 | Val Loss=0.4650, Acc=0.6103 | LR=0.000100
+2025-06-04 02:26:13,985 - INFO - Epoch 006 | Train Loss=0.5276, Acc=0.7079 | Val Loss=0.4242, Acc=0.6667 | LR=0.000100
+2025-06-04 02:26:23,170 - INFO - Epoch 007 | Train Loss=0.5105, Acc=0.7316 | Val Loss=0.4180, Acc=0.6643 | LR=0.000100
+2025-06-04 02:26:37,234 - INFO - Epoch 008 | Train Loss=0.4815, Acc=0.7549 | Val Loss=0.3972, Acc=0.6901 | LR=0.000100
+2025-06-04 02:26:53,225 - INFO - Epoch 009 | Train Loss=0.4528, Acc=0.7802 | Val Loss=0.3966, Acc=0.6972 | LR=0.000100
+2025-06-04 02:27:05,909 - INFO - Epoch 010 | Train Loss=0.4266, Acc=0.7988 | Val Loss=0.3798, Acc=0.7207 | LR=0.000100
+2025-06-04 02:27:14,177 - INFO - Epoch 011 | Train Loss=0.3956, Acc=0.8225 | Val Loss=0.3435, Acc=0.7770 | LR=0.000100
+2025-06-04 02:27:23,139 - INFO - Epoch 012 | Train Loss=0.3768, Acc=0.8436 | Val Loss=0.3478, Acc=0.7793 | LR=0.000100
+2025-06-04 02:28:00,252 - INFO - Epoch 013 | Train Loss=0.3507, Acc=0.8533 | Val Loss=0.3052, Acc=0.8263 | LR=0.000100
+2025-06-04 02:28:14,042 - INFO - Epoch 014 | Train Loss=0.3288, Acc=0.8698 | Val Loss=0.3001, Acc=0.8333 | LR=0.000100
+2025-06-04 02:28:53,822 - INFO - Epoch 015 | Train Loss=0.2977, Acc=0.8910 | Val Loss=0.2485, Acc=0.8803 | LR=0.000100
+2025-06-04 02:29:01,546 - INFO - Epoch 016 | Train Loss=0.2796, Acc=0.8986 | Val Loss=0.2378, Acc=0.8944 | LR=0.000100
+2025-06-04 02:29:11,665 - INFO - Epoch 017 | Train Loss=0.2622, Acc=0.9104 | Val Loss=0.2644, Acc=0.8756 | LR=0.000100
+2025-06-04 02:29:21,287 - INFO - Epoch 018 | Train Loss=0.2408, Acc=0.9205 | Val Loss=0.2324, Acc=0.8920 | LR=0.000100
+2025-06-04 02:29:35,354 - INFO - Epoch 019 | Train Loss=0.2284, Acc=0.9290 | Val Loss=0.2181, Acc=0.9085 | LR=0.000100
+2025-06-04 02:29:49,561 - INFO - Epoch 020 | Train Loss=0.2150, Acc=0.9311 | Val Loss=0.2299, Acc=0.8967 | LR=0.000100
+2025-06-04 02:29:56,198 - INFO - Epoch 021 | Train Loss=0.1965, Acc=0.9429 | Val Loss=0.2435, Acc=0.8967 | LR=0.000100
+2025-06-04 02:30:08,938 - INFO - Epoch 022 | Train Loss=0.1931, Acc=0.9446 | Val Loss=0.2527, Acc=0.8991 | LR=0.000100
+2025-06-04 02:30:36,017 - INFO - Epoch 023 | Train Loss=0.1804, Acc=0.9497 | Val Loss=0.2183, Acc=0.9131 | LR=0.000050
+2025-06-04 02:30:42,773 - INFO - Epoch 024 | Train Loss=0.1698, Acc=0.9539 | Val Loss=0.2491, Acc=0.9038 | LR=0.000050
+2025-06-04 02:30:48,939 - INFO - Epoch 025 | Train Loss=0.1619, Acc=0.9577 | Val Loss=0.2145, Acc=0.9131 | LR=0.000050
+2025-06-04 02:31:26,272 - INFO - Epoch 026 | Train Loss=0.1610, Acc=0.9594 | Val Loss=0.2275, Acc=0.9108 | LR=0.000050
+2025-06-04 02:31:37,990 - INFO - Epoch 027 | Train Loss=0.1525, Acc=0.9607 | Val Loss=0.2103, Acc=0.9178 | LR=0.000050
+2025-06-04 02:31:45,554 - INFO - Epoch 028 | Train Loss=0.1527, Acc=0.9637 | Val Loss=0.2056, Acc=0.9178 | LR=0.000050
+2025-06-04 02:31:58,155 - INFO - Epoch 029 | Train Loss=0.1473, Acc=0.9675 | Val Loss=0.2245, Acc=0.9108 | LR=0.000050
+2025-06-04 02:32:28,775 - INFO - Epoch 030 | Train Loss=0.1456, Acc=0.9649 | Val Loss=0.2237, Acc=0.9155 | LR=0.000050
+2025-06-04 02:33:16,818 - INFO - Epoch 031 | Train Loss=0.1362, Acc=0.9683 | Val Loss=0.2432, Acc=0.9061 | LR=0.000050
+2025-06-04 02:33:29,888 - INFO - Epoch 032 | Train Loss=0.1362, Acc=0.9649 | Val Loss=0.1907, Acc=0.9319 | LR=0.000050
+2025-06-04 02:33:39,812 - INFO - Epoch 033 | Train Loss=0.1336, Acc=0.9687 | Val Loss=0.2515, Acc=0.9038 | LR=0.000050
+2025-06-04 02:33:49,659 - INFO - Epoch 034 | Train Loss=0.1296, Acc=0.9683 | Val Loss=0.1927, Acc=0.9343 | LR=0.000050
+2025-06-04 02:34:21,165 - INFO - Epoch 035 | Train Loss=0.1298, Acc=0.9725 | Val Loss=0.2604, Acc=0.8991 | LR=0.000050
+2025-06-04 02:34:28,372 - INFO - Epoch 036 | Train Loss=0.1222, Acc=0.9704 | Val Loss=0.1933, Acc=0.9343 | LR=0.000025
+2025-06-04 02:34:34,606 - INFO - Epoch 037 | Train Loss=0.1208, Acc=0.9730 | Val Loss=0.2354, Acc=0.9108 | LR=0.000025
+2025-06-04 02:34:40,816 - INFO - Epoch 038 | Train Loss=0.1206, Acc=0.9738 | Val Loss=0.2222, Acc=0.9178 | LR=0.000025
+2025-06-04 02:34:46,960 - INFO - Epoch 039 | Train Loss=0.1155, Acc=0.9742 | Val Loss=0.2193, Acc=0.9155 | LR=0.000025
+2025-06-04 02:34:53,466 - INFO - Epoch 040 | Train Loss=0.1165, Acc=0.9742 | Val Loss=0.2180, Acc=0.9155 | LR=0.000013
+2025-06-04 02:35:00,346 - INFO - Epoch 041 | Train Loss=0.1151, Acc=0.9742 | Val Loss=0.2152, Acc=0.9202 | LR=0.000013
+2025-06-04 02:35:08,162 - INFO - Epoch 042 | Train Loss=0.1152, Acc=0.9759 | Val Loss=0.2292, Acc=0.9155 | LR=0.000013
+2025-06-04 02:35:15,239 - INFO - Epoch 043 | Train Loss=0.1174, Acc=0.9734 | Val Loss=0.2259, Acc=0.9178 | LR=0.000013
+2025-06-04 02:35:21,833 - INFO - Epoch 044 | Train Loss=0.1116, Acc=0.9776 | Val Loss=0.2143, Acc=0.9225 | LR=0.000006
+2025-06-04 02:35:29,303 - INFO - Epoch 045 | Train Loss=0.1151, Acc=0.9751 | Val Loss=0.2173, Acc=0.9202 | LR=0.000006
+2025-06-04 02:35:36,384 - INFO - Epoch 046 | Train Loss=0.1133, Acc=0.9751 | Val Loss=0.2203, Acc=0.9155 | LR=0.000006
+2025-06-04 02:35:46,059 - INFO - Epoch 047 | Train Loss=0.1104, Acc=0.9738 | Val Loss=0.2257, Acc=0.9155 | LR=0.000006
+2025-06-04 02:35:55,968 - INFO - Epoch 048 | Train Loss=0.1139, Acc=0.9717 | Val Loss=0.2222, Acc=0.9178 | LR=0.000003
+2025-06-04 02:36:05,156 - INFO - Epoch 049 | Train Loss=0.1107, Acc=0.9759 | Val Loss=0.2190, Acc=0.9202 | LR=0.000003
+2025-06-04 02:36:13,014 - INFO - Epoch 050 | Train Loss=0.1091, Acc=0.9742 | Val Loss=0.2186, Acc=0.9202 | LR=0.000003
+2025-06-04 02:36:20,512 - INFO - Epoch 051 | Train Loss=0.1114, Acc=0.9742 | Val Loss=0.2258, Acc=0.9155 | LR=0.000003
+2025-06-04 02:36:31,983 - INFO - Epoch 052 | Train Loss=0.1126, Acc=0.9725 | Val Loss=0.2211, Acc=0.9178 | LR=0.000002
+2025-06-04 02:36:31,986 - INFO - Early stopping triggered at epoch 52
+2025-06-04 02:36:31,987 - INFO - === Fine-tuning selesai ===
+2025-06-04 02:36:45,273 - INFO - Model dan scaler tersimpan (dbn_final.pth, scaler.pkl)
+2025-06-04 03:01:20,573 - INFO - Training DBN...
+2025-06-04 03:01:21,265 - INFO - === Starting DBN pre-training (layer-wise RBM) ===
+2025-06-04 03:01:21,266 - INFO - --> Pre-training RBM layer 1/3
+2025-06-04 03:01:22,049 - INFO -   - RBM1 Epoch   0: ReconLoss=1.484060
+2025-06-04 03:01:25,291 - INFO -   - RBM1 Epoch  10: ReconLoss=1.041827
+2025-06-04 03:01:27,842 - INFO -   - RBM1 Epoch  20: ReconLoss=1.015246
+2025-06-04 03:01:30,499 - INFO -   - RBM1 Epoch  30: ReconLoss=1.003146
+2025-06-04 03:01:32,725 - INFO -   - RBM1 Epoch  40: ReconLoss=1.025612
+2025-06-04 03:01:35,857 - INFO -   - RBM1 Epoch  50: ReconLoss=1.028179
+2025-06-04 03:01:42,168 - INFO -   - RBM1 Epoch  60: ReconLoss=1.031087
+2025-06-04 03:01:46,254 - INFO -   - RBM1 Epoch  70: ReconLoss=1.020998
+2025-06-04 03:01:50,102 - INFO -   - RBM1 Epoch  80: ReconLoss=1.035314
+2025-06-04 03:01:53,902 - INFO -   - RBM1 Epoch  90: ReconLoss=1.041565
+2025-06-04 03:01:57,434 - INFO - --> Pre-training RBM layer 2/3
+2025-06-04 03:01:57,622 - INFO -   - RBM2 Epoch   0: ReconLoss=0.438286
+2025-06-04 03:01:59,794 - INFO -   - RBM2 Epoch  10: ReconLoss=0.409829
+2025-06-04 03:02:03,232 - INFO -   - RBM2 Epoch  20: ReconLoss=0.400935
+2025-06-04 03:02:06,407 - INFO -   - RBM2 Epoch  30: ReconLoss=0.393631
+2025-06-04 03:02:12,368 - INFO -   - RBM2 Epoch  40: ReconLoss=0.388855
+2025-06-04 03:02:18,918 - INFO -   - RBM2 Epoch  50: ReconLoss=0.386956
+2025-06-04 03:02:22,628 - INFO -   - RBM2 Epoch  60: ReconLoss=0.382587
+2025-06-04 03:02:30,458 - INFO -   - RBM2 Epoch  70: ReconLoss=0.381733
+2025-06-04 03:03:10,493 - INFO -   - RBM2 Epoch  80: ReconLoss=0.377211
+2025-06-04 03:03:18,878 - INFO -   - RBM2 Epoch  90: ReconLoss=0.374285
+2025-06-04 03:04:01,914 - INFO - --> Pre-training RBM layer 3/3
+2025-06-04 03:04:02,528 - INFO -   - RBM3 Epoch   0: ReconLoss=0.417240
+2025-06-04 03:04:04,293 - INFO -   - RBM3 Epoch  10: ReconLoss=0.227369
+2025-06-04 03:04:06,161 - INFO -   - RBM3 Epoch  20: ReconLoss=0.170126
+2025-06-04 03:04:08,411 - INFO -   - RBM3 Epoch  30: ReconLoss=0.155503
+2025-06-04 03:04:10,458 - INFO -   - RBM3 Epoch  40: ReconLoss=0.149805
+2025-06-04 03:04:12,290 - INFO -   - RBM3 Epoch  50: ReconLoss=0.146968
+2025-06-04 03:04:15,012 - INFO -   - RBM3 Epoch  60: ReconLoss=0.143517
+2025-06-04 03:04:19,567 - INFO -   - RBM3 Epoch  70: ReconLoss=0.141510
+2025-06-04 03:04:32,173 - INFO -   - RBM3 Epoch  80: ReconLoss=0.140152
+2025-06-04 03:04:51,788 - INFO -   - RBM3 Epoch  90: ReconLoss=0.138125
+2025-06-04 03:04:54,098 - INFO - === Starting DBN fine-tuning (supervised) ===
+2025-06-04 03:05:28,436 - INFO - Epoch 000 | Train Loss=0.6956, Acc=0.5148 | Val Loss=0.6952, Acc=0.0728 | LR=0.000100
+2025-06-04 03:05:41,155 - INFO - Epoch 001 | Train Loss=0.6753, Acc=0.5385 | Val Loss=0.6911, Acc=0.0728 | LR=0.000100
+2025-06-04 03:06:05,228 - INFO - Epoch 002 | Train Loss=0.6613, Acc=0.5731 | Val Loss=0.6479, Acc=0.2887 | LR=0.000100
+2025-06-04 03:06:15,321 - INFO - Epoch 003 | Train Loss=0.6372, Acc=0.5972 | Val Loss=0.5904, Acc=0.3873 | LR=0.000100
+2025-06-04 03:06:28,380 - INFO - Epoch 004 | Train Loss=0.6120, Acc=0.6306 | Val Loss=0.5140, Acc=0.5023 | LR=0.000100
+2025-06-04 03:06:55,176 - INFO - Epoch 005 | Train Loss=0.5823, Acc=0.6619 | Val Loss=0.4359, Acc=0.6408 | LR=0.000100
+2025-06-04 03:07:02,353 - INFO - Epoch 006 | Train Loss=0.5501, Acc=0.6978 | Val Loss=0.3978, Acc=0.6901 | LR=0.000100
+2025-06-04 03:07:13,251 - INFO - Epoch 007 | Train Loss=0.5190, Acc=0.7274 | Val Loss=0.3768, Acc=0.7230 | LR=0.000100
+2025-06-04 03:07:36,079 - INFO - Epoch 008 | Train Loss=0.4837, Acc=0.7604 | Val Loss=0.3704, Acc=0.7394 | LR=0.000100
+2025-06-04 03:07:50,990 - INFO - Epoch 009 | Train Loss=0.4574, Acc=0.7777 | Val Loss=0.3620, Acc=0.7465 | LR=0.000100
+2025-06-04 03:07:57,642 - INFO - Epoch 010 | Train Loss=0.4276, Acc=0.8022 | Val Loss=0.3477, Acc=0.7770 | LR=0.000100
+2025-06-04 03:08:06,369 - INFO - Epoch 011 | Train Loss=0.3995, Acc=0.8280 | Val Loss=0.3243, Acc=0.8052 | LR=0.000100
+2025-06-04 03:08:19,091 - INFO - Epoch 012 | Train Loss=0.3727, Acc=0.8445 | Val Loss=0.3090, Acc=0.8310 | LR=0.000100
+2025-06-04 03:08:45,720 - INFO - Epoch 013 | Train Loss=0.3456, Acc=0.8652 | Val Loss=0.2736, Acc=0.8638 | LR=0.000100
+2025-06-04 03:08:55,198 - INFO - Epoch 014 | Train Loss=0.3211, Acc=0.8795 | Val Loss=0.2767, Acc=0.8615 | LR=0.000100
+2025-06-04 03:09:10,200 - INFO - Epoch 015 | Train Loss=0.2974, Acc=0.8914 | Val Loss=0.2322, Acc=0.9014 | LR=0.000100
+2025-06-04 03:09:39,126 - INFO - Epoch 016 | Train Loss=0.2745, Acc=0.9057 | Val Loss=0.2397, Acc=0.8944 | LR=0.000100
+2025-06-04 03:09:46,166 - INFO - Epoch 017 | Train Loss=0.2501, Acc=0.9159 | Val Loss=0.2192, Acc=0.9085 | LR=0.000100
+2025-06-04 03:09:56,883 - INFO - Epoch 018 | Train Loss=0.2350, Acc=0.9277 | Val Loss=0.2188, Acc=0.9061 | LR=0.000100
+2025-06-04 03:10:33,452 - INFO - Epoch 019 | Train Loss=0.2209, Acc=0.9294 | Val Loss=0.2449, Acc=0.8944 | LR=0.000100
+2025-06-04 03:10:41,569 - INFO - Epoch 020 | Train Loss=0.2039, Acc=0.9383 | Val Loss=0.1960, Acc=0.9202 | LR=0.000100
+2025-06-04 03:11:20,295 - INFO - Epoch 021 | Train Loss=0.1952, Acc=0.9429 | Val Loss=0.1895, Acc=0.9296 | LR=0.000100
+2025-06-04 03:11:30,091 - INFO - Epoch 022 | Train Loss=0.1842, Acc=0.9493 | Val Loss=0.1854, Acc=0.9343 | LR=0.000100
+2025-06-04 03:11:40,107 - INFO - Epoch 023 | Train Loss=0.1812, Acc=0.9531 | Val Loss=0.2398, Acc=0.8991 | LR=0.000100
+2025-06-04 03:12:22,019 - INFO - Epoch 024 | Train Loss=0.1613, Acc=0.9594 | Val Loss=0.2422, Acc=0.9014 | LR=0.000100
+2025-06-04 03:12:35,449 - INFO - Epoch 025 | Train Loss=0.1573, Acc=0.9577 | Val Loss=0.1778, Acc=0.9366 | LR=0.000100
+2025-06-04 03:13:17,855 - INFO - Epoch 026 | Train Loss=0.1436, Acc=0.9653 | Val Loss=0.2209, Acc=0.9108 | LR=0.000100
+2025-06-04 03:13:26,352 - INFO - Epoch 027 | Train Loss=0.1428, Acc=0.9649 | Val Loss=0.2094, Acc=0.9178 | LR=0.000100
+2025-06-04 03:13:57,275 - INFO - Epoch 028 | Train Loss=0.1307, Acc=0.9675 | Val Loss=0.1759, Acc=0.9390 | LR=0.000100
+2025-06-04 03:14:13,277 - INFO - Epoch 029 | Train Loss=0.1312, Acc=0.9713 | Val Loss=0.2211, Acc=0.9131 | LR=0.000100
+2025-06-04 03:14:21,185 - INFO - Epoch 030 | Train Loss=0.1176, Acc=0.9717 | Val Loss=0.2238, Acc=0.9131 | LR=0.000100
+2025-06-04 03:14:33,597 - INFO - Epoch 031 | Train Loss=0.1169, Acc=0.9755 | Val Loss=0.2488, Acc=0.9038 | LR=0.000100
+2025-06-04 03:14:58,165 - INFO - Epoch 032 | Train Loss=0.1134, Acc=0.9738 | Val Loss=0.1975, Acc=0.9272 | LR=0.000050
+2025-06-04 03:15:09,390 - INFO - Epoch 033 | Train Loss=0.1056, Acc=0.9755 | Val Loss=0.1910, Acc=0.9296 | LR=0.000050
+2025-06-04 03:15:45,442 - INFO - Epoch 034 | Train Loss=0.1033, Acc=0.9768 | Val Loss=0.1847, Acc=0.9343 | LR=0.000050
+2025-06-04 03:15:54,914 - INFO - Epoch 035 | Train Loss=0.0996, Acc=0.9784 | Val Loss=0.1859, Acc=0.9343 | LR=0.000050
+2025-06-04 03:16:02,701 - INFO - Epoch 036 | Train Loss=0.1032, Acc=0.9763 | Val Loss=0.1728, Acc=0.9413 | LR=0.000050
+2025-06-04 03:16:14,545 - INFO - Epoch 037 | Train Loss=0.1007, Acc=0.9793 | Val Loss=0.2161, Acc=0.9225 | LR=0.000050
+2025-06-04 03:16:45,540 - INFO - Epoch 038 | Train Loss=0.1010, Acc=0.9780 | Val Loss=0.1771, Acc=0.9413 | LR=0.000050
+2025-06-04 03:16:54,573 - INFO - Epoch 039 | Train Loss=0.0948, Acc=0.9780 | Val Loss=0.1840, Acc=0.9366 | LR=0.000050
+2025-06-04 03:17:08,528 - INFO - Epoch 040 | Train Loss=0.0917, Acc=0.9831 | Val Loss=0.2174, Acc=0.9272 | LR=0.000025
+2025-06-04 03:17:32,341 - INFO - Epoch 041 | Train Loss=0.0929, Acc=0.9789 | Val Loss=0.1904, Acc=0.9343 | LR=0.000025
+2025-06-04 03:17:40,159 - INFO - Epoch 042 | Train Loss=0.0887, Acc=0.9810 | Val Loss=0.1929, Acc=0.9319 | LR=0.000025
+2025-06-04 03:17:46,904 - INFO - Epoch 043 | Train Loss=0.0902, Acc=0.9810 | Val Loss=0.2044, Acc=0.9319 | LR=0.000025
+2025-06-04 03:17:56,388 - INFO - Epoch 044 | Train Loss=0.0886, Acc=0.9806 | Val Loss=0.1846, Acc=0.9366 | LR=0.000013
+2025-06-04 03:18:12,234 - INFO - Epoch 045 | Train Loss=0.0872, Acc=0.9810 | Val Loss=0.2017, Acc=0.9319 | LR=0.000013
+2025-06-04 03:18:30,580 - INFO - Epoch 046 | Train Loss=0.0883, Acc=0.9818 | Val Loss=0.2017, Acc=0.9319 | LR=0.000013
+2025-06-04 03:18:39,125 - INFO - Epoch 047 | Train Loss=0.0864, Acc=0.9827 | Val Loss=0.1901, Acc=0.9366 | LR=0.000013
+2025-06-04 03:18:47,712 - INFO - Epoch 048 | Train Loss=0.0878, Acc=0.9806 | Val Loss=0.1987, Acc=0.9343 | LR=0.000006
+2025-06-04 03:18:55,249 - INFO - Epoch 049 | Train Loss=0.0903, Acc=0.9818 | Val Loss=0.1965, Acc=0.9366 | LR=0.000006
+2025-06-04 03:19:05,543 - INFO - Epoch 050 | Train Loss=0.0890, Acc=0.9801 | Val Loss=0.2041, Acc=0.9343 | LR=0.000006
+2025-06-04 03:19:29,480 - INFO - Epoch 051 | Train Loss=0.0838, Acc=0.9818 | Val Loss=0.1974, Acc=0.9366 | LR=0.000006
+2025-06-04 03:19:35,849 - INFO - Epoch 052 | Train Loss=0.0852, Acc=0.9822 | Val Loss=0.1980, Acc=0.9343 | LR=0.000003
+2025-06-04 03:19:41,958 - INFO - Epoch 053 | Train Loss=0.0828, Acc=0.9818 | Val Loss=0.1994, Acc=0.9343 | LR=0.000003
+2025-06-04 03:19:47,672 - INFO - Epoch 054 | Train Loss=0.0843, Acc=0.9835 | Val Loss=0.1996, Acc=0.9319 | LR=0.000003
+2025-06-04 03:19:53,739 - INFO - Epoch 055 | Train Loss=0.0853, Acc=0.9844 | Val Loss=0.1981, Acc=0.9366 | LR=0.000003
+2025-06-04 03:19:59,663 - INFO - Epoch 056 | Train Loss=0.0849, Acc=0.9822 | Val Loss=0.1993, Acc=0.9343 | LR=0.000002
+2025-06-04 03:19:59,663 - INFO - Early stopping triggered at epoch 56
+2025-06-04 03:19:59,665 - INFO - === Fine-tuning selesai ===
+2025-06-04 03:20:08,955 - INFO - Model dan scaler tersimpan (dbn_final.pth, scaler.pkl)
+2025-06-04 03:20:18,634 - INFO - Validation MSE: 9.624244
+2025-06-04 03:20:18,634 - INFO - Total training time: 1138.06s
+2025-06-04 03:20:18,635 - INFO - Validation MCC: 0.5373, AUC: 0.8709
+2025-06-04 03:20:18,636 - INFO - Test       MCC: 0.3722, AUC: 0.8307
