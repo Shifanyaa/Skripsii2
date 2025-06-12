@@ -18,6 +18,7 @@ class FocalLoss(nn.Module):
         ce_loss = F.binary_cross_entropy_with_logits(
             logits, targets, pos_weight=self.pos_weight, reduction="none"
         )
+        # target untuk focal loss
         p_t = pb * targets + (1 - pb) * (1 - targets)
         focal_factor = (1 - p_t) ** self.gamma
         loss = self.alpha * focal_factor * ce_loss

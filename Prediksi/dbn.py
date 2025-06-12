@@ -159,7 +159,7 @@ if __name__ == "__main__":
                 x_t = torch.tensor(X_scaled, dtype=torch.float32)
                 logit = model(x_t)
                 prob = torch.sigmoid(logit).item()
-                label = "GENOTOKSIK" if prob > 0.45 else "NON‐GENOTOKSIK"
+                label = "GENOTOKSIK" if prob > 0.05 else "NON‐GENOTOKSIK"
 
             print(f"→ Probabilitas genotoksik: {prob:.4f}   |   Prediksi akhir: {label}\n")
 
